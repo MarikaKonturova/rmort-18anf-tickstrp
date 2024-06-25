@@ -1,9 +1,9 @@
 // @ts-check
-const eslint = require('@eslint/js');
-const tseslint = require('typescript-eslint');
-const angular = require('angular-eslint');
-const eslintConfigPrettier = require('eslint-config-prettier');
-module.exports = tseslint.config(
+import eslint from '@eslint/js';
+import tseslint from 'typescript-eslint';
+import angular from 'angular-eslint';
+import eslintConfigPrettier from 'eslint-config-prettier';
+export default tseslint.config(
   {
     // config with just ignores is the replacement for `.eslintignore`
     ignores: ['**/build/**', '**/dist/**'],

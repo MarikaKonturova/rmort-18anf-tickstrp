@@ -10,8 +10,4 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title!: 'blabla';
-  constructor() {
-    var a = 'a';
-  }
-  onMethod() {}
 }
