@@ -11,11 +11,15 @@
 ✅️ - created config and it works
 ✅️✅️ - done
 
+### Current to-do
+
+- [rewrite themes and add localstorage](https://sevriukovmk.medium.com/custom-angular-material-multiple-themes-dd7cb31f835)
+
 ### Ambitious to-do
 
 - i18n (✅️)
 - ssr (✅️)
-- stripe
+- ng-zorro/material angular w/ 3 themes (✅️)
 - auth w/ jwt (realworldapi)
-- ng-zorro w/ 3 themes
+- stripe
 - fusionchart(maybe ngx-charts)
