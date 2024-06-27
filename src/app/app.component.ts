@@ -1,27 +1,33 @@
-import { Component } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { RMORTY_API_URL } from 'core/tokens/rmorty-api.token';
 
-import { ThemeService } from './services/theme.service';
+import { ThemeService } from './core/services/theme.service';
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     RouterOutlet,
-    MatSlideToggleModule,
-    MatIconModule,
     MatDividerModule,
-    MatButtonModule,
     MatCheckboxModule,
     MatSidenavModule,
+    MatFormFieldModule,
+    RouterLink,
+    MatInputModule,
+    MatCardModule,
+  ],
+  providers: [
+    { provide: RMORTY_API_URL, useValue: 'https://rickandmortyapi.com/api' },
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   title!: 'blabla';

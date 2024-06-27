@@ -1,5 +1,6 @@
 import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
 
+// TODO: rewrite on Friday
 @Injectable({
   providedIn: 'root',
 })
