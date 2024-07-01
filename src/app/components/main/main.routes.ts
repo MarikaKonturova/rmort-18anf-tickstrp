@@ -6,11 +6,6 @@ import { HomeComponent } from './home/home.component';
 
 export const mainRoutes: Routes = [
   {
-    path: '',
-    pathMatch: 'full',
-    redirectTo: 'home',
-  },
-  {
     canActivate: [authGuard],
     canLoad: [authGuard],
     component: BasketComponent,
@@ -20,6 +15,6 @@ export const mainRoutes: Routes = [
     canActivate: [authGuard],
     canLoad: [authGuard],
     component: HomeComponent,
-    path: 'home',
+    path: '',
   },
 ];

@@ -97,6 +97,7 @@ export class HomeComponent {
       },
     });
   }
+
   handlePageEvent(event: PageEvent) {
     if (event.previousPageIndex !== event.pageIndex) {
       this.updateQueryAndRequest({

@@ -41,6 +41,9 @@ export class LoginComponent {
   });
 
   serverError = signal<string>('');
+  constructor() {
+    console.log('shit');
+  }
 
   onSubmit(): void {
     this.authService.login(this.form.getRawValue()).subscribe({

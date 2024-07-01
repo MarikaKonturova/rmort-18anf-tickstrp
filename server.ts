@@ -37,7 +37,11 @@ export function app(): express.Express {
       .render({
         bootstrap,
         documentFilePath: indexHtml,
-        providers: [{ provide: APP_BASE_HREF, useValue: baseUrl }],
+        providers: [
+          { provide: APP_BASE_HREF, useValue: baseUrl },
+          { provide: 'REQUEST', useValue: req },
+          { provide: 'RESPONSE', useValue: res },
+        ],
         publicPath: browserDistFolder,
         url: `${protocol}://${headers.host}${originalUrl}`,
       })

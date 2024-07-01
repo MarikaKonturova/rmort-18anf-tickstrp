@@ -12,8 +12,7 @@
 ✅️✅️ - done
 
 ### Current to-do
-
-- check all the errors from server in auth ({"errors":{"email or password":["is invalid"]}})
+- add me request to home component
 - add custom field for phone number for register w/ ControlValueAccessor, NG_VALIDATOR
 - [rewrite themes and add localstorage](https://sevriukovmk.medium.com/custom-angular-material-multiple-themes-dd7cb31f835)
 
@@ -21,15 +20,13 @@
 
 - i18n (✅️)
 - ssr (✅️)
-- ng-zorro/material angular w/ 3 themes (✅️)
-- auth w/ jwt (realworldapi)
+- ng-zorro/material angular w/ 3 themes (✅️✅️)
+- auth w/ jwt ✅️✅️
 - stripe
 - fusionchart(maybe ngx-charts)
 
 ## Questions
-
+- SSR problem in browser/server state of app
 - does formControl as reactive form handle subscription?
 - authenticated peson can access login page, but we cannot use redirect in constructor - do we need public-routes-guard? and return true/false
-- several tokens related to apiUrl:auth and rmorty
-- router & state in auth guard, examples
 - do i need canActivateChild when canLoad? Answer: canActivate is needed
