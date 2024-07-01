@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { RouterOutlet } from '@angular/router';
+import { HeaderComponent } from 'shared/components/header/header.component';
 
 import { ThemeService } from './core/services/theme.service';
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterOutlet, MatCheckboxModule],
+  imports: [RouterOutlet, MatCheckboxModule, HeaderComponent],
   selector: 'app-root',
   standalone: true,
   styleUrl: './app.component.scss',

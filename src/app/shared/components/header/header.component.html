@@ -1,0 +1,18 @@
+<mat-toolbar class="toolbar">
+  <h3 class="logo link" [routerLink]="['main']">Rick and morty tickets</h3>
+  <div class="menu">
+    <mat-form-field>
+      <mat-label>Theme</mat-label>
+      <mat-select>
+        @for (theme of themes; track theme.value) {
+          <mat-option [value]="theme.value">{{ theme.viewValue }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-icon
+      fontIcon="shopping_cart"
+      [routerLink]="['main/basket']"
+      class="icon link"></mat-icon>
+    <a [routerLink]="['main/profile']" class="profile link">Profile</a>
+  </div>
+</mat-toolbar>

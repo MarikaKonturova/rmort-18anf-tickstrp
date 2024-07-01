@@ -1,1 +1,8 @@
 <p>basket works!</p>
+@for (basket of baskets; track basket.characterId) {
+  <mat-card class="card">
+    <span> characterId: {{ basket.characterId }} </span>
+    <button mat-button>тут надо убрать или добавить товар</button>
+  </mat-card>
+}
+<button mat-button>купить через stripe</button>
