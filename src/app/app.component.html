@@ -1,14 +1,8 @@
 <div class="main">
   {{ title }}
   <h1 i18n>Translate me!</h1>
-  <mat-checkbox i18n>Check me!</mat-checkbox>
   <button (click)="toggleTheme('light')">Light Theme</button>
   <button (click)="toggleTheme('dark')">Dark Theme</button>
   <button (click)="toggleTheme('custom')">Custom Theme</button>
-
-  <section>
-    <a mat-button routerLink="/login">Login</a>
-    <a mat-button routerLink="/register">Register</a>
-  </section>
   <router-outlet />
 </div>

@@ -27,6 +27,8 @@
 - fusionchart(maybe ngx-charts)
 
 ## Questions
+
+- does formControl as reactive form handle subscription?
 - authenticated peson can access login page, but we cannot use redirect in constructor - do we need public-routes-guard? and return true/false
 - several tokens related to apiUrl:auth and rmorty
 - router & state in auth guard, examples

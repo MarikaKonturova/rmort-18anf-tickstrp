@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [],
   selector: 'app-basket',
   standalone: true,
-  imports: [],
-  templateUrl: './basket.component.html',
   styleUrl: './basket.component.scss',
+  templateUrl: './basket.component.html',
 })
 export class BasketComponent {}

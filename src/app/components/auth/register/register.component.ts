@@ -14,8 +14,7 @@ import { AuthService } from 'core/services/auth.service';
 import { LocalStorageService } from 'core/services/local-storage.service';
 
 @Component({
-  selector: 'app-register',
-  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
     MatFormFieldModule,
@@ -23,31 +22,28 @@ import { LocalStorageService } from 'core/services/local-storage.service';
     MatButtonModule,
     MatCardModule,
   ],
-  templateUrl: './register.component.html',
+  selector: 'app-register',
+  standalone: true,
   styleUrl: './register.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  templateUrl: './register.component.html',
 })
 export class RegisterComponent {
-  private fb = inject(FormBuilder);
   private authService = inject(AuthService);
+  private cdr = inject(ChangeDetectorRef);
+  private fb = inject(FormBuilder);
   private ls = inject(LocalStorageService);
   private router = inject(Router);
-  private cdr = inject(ChangeDetectorRef);
 
   // add phone number here w/ ControlValueAccessor
   form = this.fb.nonNullable.group({
-    username: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
+    username: ['', Validators.required],
   });
 
   onSubmit(): void {
+    console.log(this.form.getRawValue());
     this.authService.register(this.form.getRawValue()).subscribe({
-      next: response => {
-        this.ls.setItem('token', response.user.token);
-        this.authService.currentUserSig.set(response.user);
-        this.router.navigateByUrl('/');
-      },
       error: error => {
         if (error.error?.errors) {
           const errorObj = error.error.errors;
@@ -62,6 +58,11 @@ export class RegisterComponent {
           });
           this.cdr.markForCheck();
         }
+      },
+      next: response => {
+        this.ls.setItem('token', response.accessToken);
+        this.authService.currentUserSig.set(response.user);
+        this.router.navigateByUrl('/');
       },
     });
   }

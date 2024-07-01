@@ -5,142 +5,11 @@
 
 @include mat.core();
 
-$_palettes: (
-  primary: (
-    0: #000000,
-    10: #370e00,
-    20: #591c00,
-    25: #6c2400,
-    30: #7b2f09,
-    35: #8a3a15,
-    40: #9a451f,
-    50: #b95d35,
-    60: #d9764c,
-    70: #f98f63,
-    80: #ffb598,
-    90: #ffdbce,
-    95: #ffede7,
-    98: #fff8f6,
-    99: #fffbff,
-    100: #ffffff,
-  ),
-  secondary: (
-    0: #000000,
-    10: #40000e,
-    20: #67011c,
-    25: #771026,
-    30: #871d30,
-    35: #972a3b,
-    40: #a73646,
-    50: #c74e5d,
-    60: #e86775,
-    70: #ff8792,
-    80: #ffb2b7,
-    90: #ffdadb,
-    95: #ffecec,
-    98: #fff8f7,
-    99: #fffbff,
-    100: #ffffff,
-  ),
-  tertiary: (
-    0: #000000,
-    10: #3f001b,
-    20: #5e112f,
-    25: #6d1d3a,
-    30: #7b2945,
-    35: #8a3451,
-    40: #99405d,
-    50: #b75875,
-    60: #d6718f,
-    70: #f68ba9,
-    80: #ffb1c5,
-    90: #ffd9e1,
-    95: #ffecef,
-    98: #fff8f8,
-    99: #fffbff,
-    100: #ffffff,
-  ),
-  neutral: (
-    0: #000000,
-    4: #120020,
-    6: #1a0031,
-    10: #2c0051,
-    12: #310556,
-    17: #3c1263,
-    20: #431a6b,
-    22: #481f70,
-    24: #4d2475,
-    25: #4f2777,
-    30: #5b3383,
-    35: #683f90,
-    40: #744b9d,
-    50: #8e64b8,
-    60: #a97ed4,
-    70: #c598f0,
-    80: #ddb8ff,
-    87: #ead0ff,
-    90: #f0dbff,
-    92: #f4e2ff,
-    94: #f8e9ff,
-    95: #faecff,
-    96: #fcf0ff,
-    98: #fff7fe,
-    99: #fffbff,
-    100: #ffffff,
-  ),
-  neutral-variant: (
-    0: #000000,
-    10: #251914,
-    20: #3b2d28,
-    25: #473833,
-    30: #53433e,
-    35: #5f4f49,
-    40: #6b5b55,
-    50: #85736d,
-    60: #a08d86,
-    70: #bba7a0,
-    80: #d8c2ba,
-    90: #f5ded6,
-    95: #ffede7,
-    98: #fff8f6,
-    99: #fffbff,
-    100: #ffffff,
-  ),
-  error: (
-    0: #000000,
-    10: #410002,
-    20: #690005,
-    25: #7e0007,
-    30: #93000a,
-    35: #a80710,
-    40: #ba1a1a,
-    50: #de3730,
-    60: #ff5449,
-    70: #ff897d,
-    80: #ffb4ab,
-    90: #ffdad6,
-    95: #ffedea,
-    98: #fff8f7,
-    99: #fffbff,
-    100: #ffffff,
-  ),
-);
-
-$_rest: (
-  secondary: map.get($_palettes, secondary),
-  neutral: map.get($_palettes, neutral),
-  neutral-variant: map.get($_palettes, neutral-variant),
-  error: map.get($_palettes, error),
-);
-$_primary: map.merge(map.get($_palettes, primary), $_rest);
-$_tertiary: map.merge(map.get($_palettes, tertiary), $_rest);
-
 $light-theme: mat.define-theme(
   (
     color: (
       theme-type: light,
-      primary: mat.$orange-palette,
-      tertiary: mat.$violet-palette,
+      primary: mat.$chartreuse-palette,
     ),
   )
 );
@@ -148,31 +17,26 @@ $dark-theme: mat.define-theme(
   (
     color: (
       theme-type: dark,
-      primary: $_primary,
-      tertiary: $_tertiary,
+      primary: mat.$green-palette,
     ),
   )
 );
 $custom-theme: mat.define-theme(
   (
     color: (
-      theme-type: light,
-      primary: $_primary,
-      tertiary: $_tertiary,
+      theme-type: dark,
+      primary: mat.$yellow-palette,
     ),
   )
 );
 
 body.dark-theme {
-  @include mat.core-color($dark-theme);
   @include mat.all-component-colors($dark-theme);
 }
 body.light-theme {
-  @include mat.core-color($light-theme);
   @include mat.all-component-colors($light-theme);
 }
 body.custom-theme {
-  @include mat.core-color($custom-theme);
   @include mat.all-component-colors($custom-theme);
 }
 
@@ -182,12 +46,4 @@ body.custom-theme {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-html {
-  @include mat.core-theme($dark-theme);
-  @include mat.all-component-colors($dark-theme);
-  @media (prefers-color-scheme: light) {
-    @include mat.core-color($light-theme);
-    @include mat.all-component-colors($light-theme);
-  }
 }

@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from 'core/guards/auth.guard';
 
 import { BasketComponent } from './basket/basket.component';
 import { HomeComponent } from './home/home.component';
@@ -6,15 +7,19 @@ import { HomeComponent } from './home/home.component';
 export const mainRoutes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
     pathMatch: 'full',
+    redirectTo: 'home',
   },
   {
-    path: 'basket',
+    canActivate: [authGuard],
+    canLoad: [authGuard],
     component: BasketComponent,
+    path: 'basket',
   },
   {
-    path: 'home',
+    canActivate: [authGuard],
+    canLoad: [authGuard],
     component: HomeComponent,
+    path: 'home',
   },
 ];

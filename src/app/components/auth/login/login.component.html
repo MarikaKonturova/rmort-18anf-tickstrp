@@ -31,6 +31,9 @@
           <mat-error>Password is <strong>required</strong></mat-error>
         }
       </mat-form-field>
+      @if (serverError()) {
+        <p>{{ serverError() }}</p>
+      }
       <button
         mat-raised-button
         color="primary"

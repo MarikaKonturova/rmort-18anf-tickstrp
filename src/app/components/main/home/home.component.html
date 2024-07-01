@@ -1,1 +1,34 @@
-<p>home works!</p>
+<!-- <input matInput [formControl]="name" type="text" /> -->
+<mat-paginator
+  [length]="info.count"
+  [pageSize]="20"
+  [hidePageSize]="true"
+  (page)="handlePageEvent($event)"
+  aria-label="Select page">
+</mat-paginator>
+<mat-form-field>
+  <input matInput [formControl]="nameControl" type="text" />
+</mat-form-field>
+<button mat-flat-button (click)="updateQueryParamsClick()">
+  updateQueryParams
+</button>
+<div class="container">
+  @for (character of characters; track character.id) {
+    <mat-card class="card"
+      >{{ character.name }}
+      <img [src]="character.image" alt="" width="150" height="150" />
+      @if (character.ticketCount) {
+        <div class="basketmenu">
+          <button mat-flat-button (click)="removeFromBasket(character.id)">
+            -</button
+          >{{ character.ticketCount }}
+          <button mat-flat-button (click)="addToBasket(character.id)">+</button>
+        </div>
+      } @else {
+        <button mat-flat-button (click)="addToBasket(character.id)">
+          add to basket
+        </button>
+      }
+    </mat-card>
+  }
+</div>

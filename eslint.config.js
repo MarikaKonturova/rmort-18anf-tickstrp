@@ -1,8 +1,8 @@
 import eslint from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import angular from 'angular-eslint';
-import eslintPluginPrettier from 'eslint-plugin-prettier/recommended';
 import eslintPluginSimpleSortImports from 'eslint-plugin-simple-import-sort';
+import perfectionistNatural from 'eslint-plugin-perfectionist/configs/recommended-natural';
 export default tseslint.config(
   {
     // config with just ignores is the replacement for `.eslintignore`
@@ -17,11 +17,8 @@ export default tseslint.config(
       ...tseslint.configs.recommended,
       ...tseslint.configs.stylistic,
       ...angular.configs.tsRecommended,
-      eslintPluginPrettier,
+      perfectionistNatural,
     ],
-    plugins: {
-      'simple-import-sort': eslintPluginSimpleSortImports,
-    },
 
     processor: angular.processInlineTemplates,
     rules: {
@@ -41,8 +38,6 @@ export default tseslint.config(
           style: 'kebab-case',
         },
       ],
-      'simple-import-sort/imports': 'error',
-      'simple-import-sort/exports': 'error',
     },
     languageOptions: {
       parserOptions: {

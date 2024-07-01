@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   inject,
+  signal,
 } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,8 +15,7 @@ import { AuthService } from 'core/services/auth.service';
 import { LocalStorageService } from 'core/services/local-storage.service';
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
     MatFormFieldModule,
@@ -23,44 +23,35 @@ import { LocalStorageService } from 'core/services/local-storage.service';
     MatButtonModule,
     MatCardModule,
   ],
+  selector: 'app-login',
 
-  templateUrl: './login.component.html',
+  standalone: true,
   styleUrl: './login.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  templateUrl: './login.component.html',
 })
 export class LoginComponent {
-  private fb = inject(FormBuilder);
   private authService = inject(AuthService);
-  private router = inject(Router);
-  private ls = inject(LocalStorageService);
   private cdr = inject(ChangeDetectorRef);
-
+  private fb = inject(FormBuilder);
+  private ls = inject(LocalStorageService);
+  private router = inject(Router);
   form = this.fb.nonNullable.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
   });
 
+  serverError = signal<string>('');
+
   onSubmit(): void {
     this.authService.login(this.form.getRawValue()).subscribe({
+      error: error => {
+        this.serverError.set(error.error.message);
+        this.cdr.markForCheck();
+      },
       next: response => {
-        this.ls.setItem('token', response.user.token);
+        this.ls.setItem('token', response.accessToken);
         this.authService.currentUserSig.set(response.user);
         this.router.navigateByUrl('/');
-      },
-      error: error => {
-        console.log(error);
-        if (error.error?.errors) {
-          const errorObj = error.error.errors;
-          Object.keys(errorObj).forEach(field => {
-            const control = this.form.get(field);
-            if (control) {
-              control.setErrors({
-                serverError: errorObj[field][0],
-              });
-            }
-          });
-          this.cdr.markForCheck();
-        }
       },
     });
   }

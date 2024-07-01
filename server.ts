@@ -1,9 +1,8 @@
-import { dirname, join, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
-
 import { APP_BASE_HREF } from '@angular/common';
 import { CommonEngine } from '@angular/ssr';
 import express from 'express';
+import { dirname, join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import bootstrap from './src/main.server';
 
@@ -25,22 +24,22 @@ export function app(): express.Express {
   server.get(
     '**',
     express.static(browserDistFolder, {
-      maxAge: '1y',
       index: 'index.html',
+      maxAge: '1y',
     })
   );
 
   // All regular routes use the Angular engine
   server.get('**', (req, res, next) => {
-    const { protocol, originalUrl, baseUrl, headers } = req;
+    const { baseUrl, headers, originalUrl, protocol } = req;
 
     commonEngine
       .render({
         bootstrap,
         documentFilePath: indexHtml,
-        url: `${protocol}://${headers.host}${originalUrl}`,
-        publicPath: browserDistFolder,
         providers: [{ provide: APP_BASE_HREF, useValue: baseUrl }],
+        publicPath: browserDistFolder,
+        url: `${protocol}://${headers.host}${originalUrl}`,
       })
       .then(html => res.send(html))
       .catch(err => next(err));

@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.card {
+  padding: 1rem 3rem;
+}
+.basketmenu {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
